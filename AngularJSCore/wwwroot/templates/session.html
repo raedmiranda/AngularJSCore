@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html ng-app="myFirstApp">
+<head>
+    <meta charset="utf-8" />
+    <title>Hola mundo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/angular-animate@1.8.2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <script src="../js/app/app.js"></script>
+    <script src="../js/app/controllers/myFirstController.js"></script>
+    <script src="../js/app/factories/myFirstFactory.js"></script>
+    <script src="../js/app/services/myFirstService.js"></script>
+</head>
+<body ng-controller="myFirstController">
+    <!---->
+    <h2>Tutorial</h2>
+
+    <!--Part 1 - Basics-->
+    <!-- MVVM -->
+    <!--binding-->
+    <h1 ng-show="name === 'Adrian'">{{"Hola " + (name | uppercase)}}</h1>
+    <br />
+    <input type="text" ng-model="name" />
+
+    <!--repeat-->
+    <h3>Comentarios</h3>
+    <ul>
+        <li ng-repeat="comment in comments">
+            {{comment.text}} - <strong>{{comment.author}}</strong>
+        </li>
+    </ul>
+
+    <!--add-->
+    Comentario:
+    <input type="text" ng-model="comment.text" />
+    Autor:
+    <input type="text" ng-model="comment.author" />
+    <button ng-click="postComment()">Agregar</button>
+    <hr />
+
+    <!--Part 2 - HTTP todos-->
+    <h3>To-Dos</h3>
+    <ul>
+        <li ng-repeat="todo in todos">
+            {{todo.title}} - <strong>{{todo.completed}}</strong>
+        </li>
+    </ul>
+    <hr />
+
+    <!--Part 3 - LocalStorage notes-->
+    <h3>Notes</h3>
+    <ul>
+        <li ng-repeat="note in notes">
+            {{note.description}} - <strong>{{note.tag}}</strong>
+        </li>
+    </ul>
+
+    Descripción:
+    <input type="text" ng-model="note.description" />
+    Etiqueta:
+    <input type="text" ng-model="note.tag" />
+    <button ng-click="postNote()">Agregar tarea</button>
+
+    <hr />
+
+    <div ng-controller="myChildController">
+        <h1>{{"Hola abuelo: " + $parent.$parent.name}}</h1>
+        <h1>{{"Hola padre: " + $parent.name}}</h1>
+        <h1>{{"Hola hijo: " + name}}</h1>
+    </div>
+
+    <!--<div ng-view></div>-->
+
+    <footer>2021</footer>
+</body>
+</html>

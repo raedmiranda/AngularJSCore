@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html ng-app="myFirstApp">
+<head>
+    <meta charset="utf-8" />
+    <title>Tareas App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/angular-animate@1.8.2/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <script src="js/app/app.js"></script>
+    <script src="js/app/services/StorageService.js"></script>
+    <script src="js/app/services/TaskService.js"></script>
+    <script src="js/app/controllers/practice.js"></script>
+    <script src="js/app/controllers/detalleController.js"></script>
+    <script src="js/app/controllers/listadoController.js"></script>
+    <script src="js/app/controllers/myFirstController.js"></script>
+    <script src="js/app/controllers/myFirstController.js"></script>
+    <script src="js/app/factories/myFirstFactory.js"></script>
+    <script src="js/app/services/myFirstService.js"></script>
+    <script src="js/app/directives/splashScreen.js"></script>
+</head>
+<body>
+    <splashScreen></splashScreen>
+
+    <div ng-view></div>
+
+
+    <!--<div>
+        <nav class="navbar  navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Tareas</span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <button class="btn btn-link nav-link active" ng-click="viewForm()">Registrar</button>
+                        </li>
+                        <li class="nav-item" ng-show="tasks.length > 0">
+                            <button class="btn btn-link nav-link" ng-click="clearTasks()">Limpiar</button>
+                        </li>
+                    </ul>
+                    <div class="navbar-text">Tareas a crear para el usuario</div>
+                    <form class="d-flex"><input type="text" class="form-control ms-2" ng-model="name" /></form>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row mt-4 mb-4" ng-show="showForm">
+                <div class="col-md-4 offset-4">
+                    <div class="card">
+                        <form>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Título</label>
+                                    <input type="text" ng-model="task.title" class="form-control" id="title" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Descripción</label>
+                                    <input type="text" ng-model="task.description" class="form-control" id="description" aria-describedby="descriptionHelp" />
+                                    <div id="descriptionHelp" class="form-text">Ingresa una tarea. Se marcará como pendiente. </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Fecha</label>
+                                    <input type="date" ng-model="task.date" class="form-control" id="date" />
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary" ng-click="postTask()">{{action}} tarea</button>
+                                    <button class="btn btn-danger" ng-click="hideForm()">Cancelar</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <h3 class=" position-relative">
+                        Tareas pendientes
+                        <span class="badge rounded-pill bg-warning text-dark">
+                            {{(tasks | filter: {done: false}).length}}
+                            <span class="visually-hidden">cantidad de tareas</span>
+                        </span>
+                    </h3>
+                    <ul class="list-group list-group-flush">
+                        <li ng-repeat="task in tasks | filter: { done: false} | orderBy: 'date'" class="list-group-item">-->
+    <!--<input type="checkbox" class="form-check-input" id="exampleCheck1" ng-model="task.done" ng-checked=task.done>-->
+    <!--<div class="row">
+                                <div class="col-1">
+                                    <button class="btn btn-outline-light" style="border-color: slategrey; " ng-click="doneTask(task)"><i class="bi bi-check-lg"></i></button>
+                                </div>
+                                <div class="col-9">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{task.title | uppercase}}</h5>
+                                        <small>{{task.date | date: 'dd/MM/yyyy'}}</small>
+                                    </div>
+                                    <p class="mb-1">{{task.description}}</p>
+                                    <small>{{task.author}}</small>
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-danger ms-1 me-1" ng-click="deleteTask(task)"><i class="bi bi-trash-fill"></i></button>
+                                    <button class="btn btn-success ms-1 me-1" ng-click="editTask(task)"><i class="bi bi-pencil-square"></i></button>
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-show="(tasks | filter: {done: false}).length === 0 && tasks.length > 0" class="list-group-item text-center">
+                            🎉 Felicidades!
+                            No tienes tareas pendientes.
+                        </li>
+                        <li ng-show="tasks.length === 0" class="list-group-item text-center">
+                            👋 Empieza!
+                            Agrega tus tareas pendientes.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h3>
+                        Tareas hechas
+                        <span class="badge rounded-pill bg-primary">
+                            {{(tasks | filter: {done: true}).length}}
+                            <span class="visually-hidden">cantidad de tareas</span>
+                        </span>
+                    </h3>
+                    <ul class="list-group list-group-flush">
+                        <li ng-repeat="task in tasks | filter: { done: true}" class="list-group-item">
+                            <div class="row">
+                                <div class="col-1">
+                                    <button class="btn btn-outline-dark" ng-click="undoneTask(task)"><i class="bi bi-dash-lg"></i></button>
+                                </div>
+                                <div class="col-9" style="text-decoration:line-through; color:darkgrey">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{task.title | uppercase}}</h5>
+                                        <small>{{task.date | date: 'dd/MM/yyyy'}}</small>
+                                    </div>
+                                    <p class="mb-1">{{task.description}}</p>
+                                    <small>{{task.author}}</small>
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-danger" ng-click="deleteTask(task)"><i class="bi bi-trash-fill"></i></button>
+                                    <button class="btn btn-success" ng-click="editTask(task)"><i class="bi bi-pencil-square"></i></button>
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-show="(tasks | filter: {done: true}).length === 0 && tasks.length > 0" class="list-group-item text-center">
+                            🚀 Tú puedes!
+                            Completa tus tareas pendientes.
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>-->
+
+</body>
+</html>
